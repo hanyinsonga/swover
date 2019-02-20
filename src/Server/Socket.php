@@ -54,6 +54,7 @@ class Socket extends Base
             'max_request'     => $this->max_request
         ]);
 
+        //注册
         $this->onStart()->onReceive()->onRequest()->onTask()->onStop();
 
         $this->server->start();
@@ -106,6 +107,7 @@ class Socket extends Base
                 return $resInstance->send('no no no~');
             }
 
+            //不是异步则直接进入业务
             if ($this->async !== true) {
                 return $this->event($data, $resInstance);
             }
@@ -115,6 +117,8 @@ class Socket extends Base
         });
         return $this;
     }
+
+
 
     private function onRequest()
     {

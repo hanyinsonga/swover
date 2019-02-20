@@ -93,6 +93,7 @@ class Base
             }
         }
 
+        //执行config中定义的entrance   --业务代码
         $result = call_user_func_array([$instance, $method], [$request]);
 
         if (is_string($result) || is_numeric($result) || is_bool($result)) {
@@ -100,9 +101,6 @@ class Base
         }
         if (is_array($result)) {
             return json_encode($result);
-        }
-        if (is_null($result)) {
-            return 'null';
         }
 
         return 'none';
